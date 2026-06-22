@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import { Avatar } from '@/components/Avatar';
 import { MessageCircle, Package } from 'lucide-react';
 import { getAvatarUrl, ensureExternalLink } from '@/utils';
 import type { PublicVendorDetail } from '@/types';
@@ -14,13 +14,10 @@ export default function VendorBanner({ vendor, productsCount }: VendorBannerProp
     <div className={styles.banner}>
       <div className={styles.bannerBg} />
       <div className={styles.bannerContent}>
-        <Image
-          src={getAvatarUrl(vendor.profileImageUrl || '', vendor.name)}
-          alt={vendor.name}
-          width={112}
-          height={112}
-          className={styles.avatar}
-          unoptimized
+        <Avatar 
+          src={getAvatarUrl(vendor.profileImageUrl || '', vendor.name)} 
+          alt={vendor.name} 
+          size={112} 
         />
         <div className={styles.bannerInfo}>
           <h1 className={styles.vendorName}>{vendor.name}</h1>

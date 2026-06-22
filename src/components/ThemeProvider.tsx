@@ -34,9 +34,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     localStorage.setItem('shop-martins-theme', next);
   };
 
-  if (!mounted) {
-    return <>{children}</>;
-  }
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
