@@ -87,25 +87,7 @@
   flex-shrink: 0;
 }
 
-.profileAvatar {
-  width: 70px;
-  height: 70px;
-  border-radius: var(--radius-pill);
-  border: 3px solid var(--color-primary-ultra-light);
-  background: var(--color-bg-tertiary);
-  object-fit: cover;
-  box-shadow: var(--shadow-sm);
-  transition: transform var(--transition-base);
 
-  &:hover {
-    transform: scale(1.02);
-  }
-
-  @include respond-to('md') {
-    width: 80px;
-    height: 80px;
-  }
-}
 
 .profileInfo {
   display: flex;

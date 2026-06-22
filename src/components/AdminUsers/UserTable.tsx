@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from 'next/image';
+import { Avatar } from '@/components/Avatar';
 import { UserDTO, AuthUser } from '@/types';
 import { getAvatarUrl } from '@/utils';
 import { RoleSelector } from './RoleSelector';
@@ -56,13 +56,10 @@ export function UserTable({
         {!isLoading && users?.map((user) => (
           <div key={user.id} className={styles.userRow}>
             <div className={styles.userCol}>
-              <Image
-                src={getAvatarUrl(user.profileImageUrl, user.name)}
-                alt={user.name}
-                width={40}
-                height={40}
-                className={styles.avatar}
-                unoptimized
+              <Avatar 
+                src={getAvatarUrl(user.profileImageUrl, user.name)} 
+                alt={user.name} 
+                size={40} 
               />
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <span className={styles.userName}>{user.name}</span>
