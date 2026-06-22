@@ -135,18 +135,7 @@
   }
 }
 
-.vendorAvatar {
-  width: 20px;
-  height: 20px;
-  border-radius: var(--radius-pill);
-  background: var(--color-bg-tertiary);
-  flex-shrink: 0;
 
-  @include respond-to('md') {
-    width: 24px;
-    height: 24px;
-  }
-}
 
 .vendorName {
   font-size: 10px;

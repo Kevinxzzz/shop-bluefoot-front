@@ -133,7 +133,7 @@ export default function PerfilContainer() {
         <ProfileHeader 
           name={nome || profile.name} 
           role={profile.role} 
-          avatarUrl={avatarUrl || `https://api.dicebear.com/9.x/initials/svg?seed=${profile.name}`} 
+          avatarUrl={avatarUrl || null} 
         />
 
         <div className={styles.formGrid}>

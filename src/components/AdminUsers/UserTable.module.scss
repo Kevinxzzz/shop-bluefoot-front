@@ -89,12 +89,7 @@
   min-width: 0;
 }
 
-.avatar {
-  border-radius: var(--radius-pill);
-  background: var(--color-bg-tertiary);
-  border: 2px solid var(--color-primary-ultra-light);
-  flex-shrink: 0;
-}
+
 
 .userName {
   font-size: var(--fs-sm);

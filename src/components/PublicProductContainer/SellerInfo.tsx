@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
+import { Avatar } from '@/components/Avatar';
 import type { PublicProductDetail } from '@/types/productType';
 import { getAvatarUrl } from '@/utils';
 import styles from './PublicProductContainer.module.scss';
@@ -19,13 +19,10 @@ export function SellerInfo({ seller }: SellerInfoProps) {
     <div className={styles.vendorBlock}>
       <h4 className={styles.vendorTitle}>Vendedor</h4>
       <Link href={`/vendedor/${seller.id}`} className={styles.vendorInfo}>
-        <Image
-          src={avatarUrl}
-          alt={seller.name}
-          width={48}
-          height={48}
-          className={styles.vendorAvatar}
-          unoptimized
+        <Avatar 
+          src={avatarUrl} 
+          alt={seller.name} 
+          size={48} 
         />
         <div>
           <span className={styles.vendorName}>{seller.name}</span>
