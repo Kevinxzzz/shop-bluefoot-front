@@ -16,6 +16,7 @@ import { SellAccountCTA } from "@/components/SellAccountCTA";
 import ModalConfirm from "@/components/ModalConfirm";
 import HomeBannerCarousel from "@/components/HomeBannerCarousel";
 import { InstitutionalSection } from "@/components/InstitutionalSection";
+import { FaqSection } from "@/components/FaqSection";
 import ProductCard from "@/components/ProductCard";
 import { ProductCardSkeleton } from "@/components/SkeletonLoader";
 import FilterModal from "@/components/FilterModal";
@@ -289,6 +290,8 @@ function HomeContent() {
       {!isAuthLoading && !isAuthenticated && (
         <SellAccountCTA onAction={() => setIsSellModalOpen(true)} />
       )}
+
+      <FaqSection />
 
       <Footer />
     </>
