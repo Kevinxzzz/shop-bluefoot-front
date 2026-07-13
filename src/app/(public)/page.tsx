@@ -15,6 +15,7 @@ import { useAuth } from "@/hooks/auth/useAuth";
 import { SellAccountCTA } from "@/components/SellAccountCTA";
 import ModalConfirm from "@/components/ModalConfirm";
 import HomeBannerCarousel from "@/components/HomeBannerCarousel";
+import { InstitutionalSection } from "@/components/InstitutionalSection";
 import ProductCard from "@/components/ProductCard";
 import { ProductCardSkeleton } from "@/components/SkeletonLoader";
 import FilterModal from "@/components/FilterModal";
@@ -218,21 +219,8 @@ function HomeContent() {
         )}
       </section>
 
-      {/* Sell CTA Banner */}
-      <section className={styles.ctaBanner}>
-        <div className={styles.ctaInner}>
-          <h2 className={styles.ctaTitle}>Deseja vender seus produtos?</h2>
-          <p className={styles.ctaText}>Entre no nosso grupo de vendas.</p>
-          <a
-            href={salesGroupLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.ctaBtn}
-          >
-            Quero vender <ArrowRight size={16} />
-          </a>
-        </div>
-      </section>
+      {/* Institutional Benefits Section */}
+      <InstitutionalSection />
 
       {/* Filter Modal */}
       <FilterModal
