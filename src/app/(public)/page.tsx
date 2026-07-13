@@ -8,8 +8,15 @@ import {
   SlidersHorizontal,
   X,
   Loader2,
+  Check,
+  Coins,
 } from "lucide-react";
+import { useAuth } from "@/hooks/auth/useAuth";
+import { SellAccountCTA } from "@/components/SellAccountCTA";
+import ModalConfirm from "@/components/ModalConfirm";
 import HomeBannerCarousel from "@/components/HomeBannerCarousel";
+import { InstitutionalSection } from "@/components/InstitutionalSection";
+import { FaqSection } from "@/components/FaqSection";
 import ProductCard from "@/components/ProductCard";
 import { ProductCardSkeleton } from "@/components/SkeletonLoader";
 import FilterModal from "@/components/FilterModal";
@@ -28,8 +35,10 @@ function HomeContent() {
   const [filters, setFilters] = useState<PublicProductFilters>({});
 
   const { data: linkData } = usePublicEnterpriseLink();
-  const salesGroupLink =
-    linkData?.link || "";
+  const salesGroupLink = linkData?.link || "";
+
+  const [isSellModalOpen, setIsSellModalOpen] = useState(false);
+  const { isAuthenticated, isLoading: isAuthLoading } = useAuth();
 
   const categoryParam = searchParams.get("category");
   const searchParam = searchParams.get("search");
@@ -211,21 +220,8 @@ function HomeContent() {
         )}
       </section>
 
-      {/* Sell CTA Banner */}
-      <section className={styles.ctaBanner}>
-        <div className={styles.ctaInner}>
-          <h2 className={styles.ctaTitle}>Deseja vender seus produtos?</h2>
-          <p className={styles.ctaText}>Entre no nosso grupo de vendas.</p>
-          <a
-            href={salesGroupLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.ctaBtn}
-          >
-            Quero vender <ArrowRight size={16} />
-          </a>
-        </div>
-      </section>
+      {/* Institutional Benefits Section */}
+      <InstitutionalSection />
 
       {/* Filter Modal */}
       <FilterModal
@@ -241,6 +237,62 @@ function HomeContent() {
           setFilterOpen(false);
         }}
       />
+      
+      <ModalConfirm
+        isOpen={isSellModalOpen}
+        title="Quer vender sua conta conosco?"
+        variant="promo"
+        layout="stacked"
+        icon={<Coins size={24} />}
+        message={
+          <div style={{ 
+            display: "flex", 
+            flexDirection: "column", 
+            gap: "12px", 
+            marginTop: "16px", 
+            textAlign: "left",
+            background: "var(--color-bg-secondary)",
+            padding: "16px",
+            borderRadius: "var(--radius-lg)",
+            border: "1px dashed var(--color-border)"
+          }}>
+            <div style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}>
+              <Check size={16} style={{ color: "var(--color-accent)", flexShrink: 0, marginTop: "2px" }} />
+              <span style={{ fontSize: "var(--fs-sm)", color: "var(--color-text)", lineHeight: "1.4" }}>
+                <strong>Valor de Revenda:</strong> Pagamos valor de revenda de forma ágil e segura.
+              </span>
+            </div>
+            <div style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}>
+              <Check size={16} style={{ color: "var(--color-accent)", flexShrink: 0, marginTop: "2px" }} />
+              <span style={{ fontSize: "var(--fs-sm)", color: "var(--color-text)", lineHeight: "1.4" }}>
+                <strong>Somente Konami ID:</strong> Processo de transferência limpo e oficial.
+              </span>
+            </div>
+            <div style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}>
+              <Check size={16} style={{ color: "var(--color-accent)", flexShrink: 0, marginTop: "2px" }} />
+              <span style={{ fontSize: "var(--fs-sm)", color: "var(--color-text)", lineHeight: "1.4" }}>
+                <strong>Sem Reembolso:</strong> Compromisso definitivo de ambas as partes.
+              </span>
+            </div>
+          </div>
+        }
+        confirmText="Quero vender minha conta"
+        cancelText="Agora não"
+        onConfirm={() => {
+          if (salesGroupLink) {
+            window.open(salesGroupLink, "_blank", "noopener,noreferrer");
+          }
+          setIsSellModalOpen(false);
+        }}
+        onCancel={() => setIsSellModalOpen(false)}
+      />
+
+      {!isAuthLoading && !isAuthenticated && (
+        <SellAccountCTA onAction={() => setIsSellModalOpen(true)} />
+      )}
+
+      <FaqSection />
+
       <Footer />
     </>
   );

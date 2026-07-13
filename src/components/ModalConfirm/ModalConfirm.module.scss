@@ -52,6 +52,33 @@
   display: flex;
   gap: var(--space-3);
   justify-content: center;
+
+  &.stacked {
+    flex-direction: column-reverse;
+    width: 100%;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+
+    .confirmBtn, .cancelBtn {
+      width: 100%;
+      padding: var(--space-3) var(--space-4);
+      justify-content: center;
+    }
+
+    .cancelBtn {
+      border: none;
+      background: transparent;
+      color: var(--color-text-secondary);
+      font-size: var(--fs-sm);
+      font-weight: var(--fw-medium);
+      
+      &:hover {
+        color: var(--color-text);
+        background: transparent;
+        text-decoration: underline;
+      }
+    }
+  }
 }
 
 .cancelBtn {
@@ -75,3 +102,77 @@
     }
   }
 }
+
+// Variant Promo
+.modal.promo {
+  border: 1px solid rgba(11, 95, 255, 0.15);
+  box-shadow: var(--shadow-2xl), 0 10px 40px rgba(11, 95, 255, 0.12);
+  background: radial-gradient(circle at top center, rgba(11, 95, 255, 0.05), transparent 60%), var(--color-bg);
+
+  [data-theme="dark"] & {
+    border-color: rgba(11, 95, 255, 0.25);
+    box-shadow: var(--shadow-2xl), 0 10px 40px rgba(11, 95, 255, 0.2);
+    background: radial-gradient(circle at top center, rgba(11, 95, 255, 0.12), transparent 60%), var(--color-bg-elevated);
+  }
+
+  .title {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.375rem;
+    font-weight: var(--fw-extrabold);
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-3);
+  }
+}
+
+.iconWrapper.promo {
+  background: linear-gradient(135deg, rgba(11, 95, 255, 0.12) 0%, rgba(0, 212, 170, 0.12) 100%);
+  color: var(--color-primary);
+  border: 1px solid rgba(11, 95, 255, 0.2);
+  box-shadow: 0 8px 20px rgba(11, 95, 255, 0.08);
+  animation: modalPromoFloat 3s ease-in-out infinite;
+}
+
+@keyframes modalPromoFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+// Responsividade
+@media (max-width: 480px) {
+  .modal {
+    padding: var(--space-6) var(--space-4);
+    width: 92%;
+    border-radius: var(--radius-lg);
+  }
+
+  .iconWrapper {
+    width: 44px;
+    height: 44px;
+    margin-bottom: var(--space-3);
+
+    svg {
+      width: 22px;
+      height: 22px;
+    }
+  }
+
+  .title {
+    font-size: 1.125rem;
+  }
+
+  .modal.promo .title {
+    font-size: 1.25rem;
+  }
+
+  .message {
+    font-size: var(--fs-xs);
+    margin-bottom: var(--space-5);
+  }
+}
+
