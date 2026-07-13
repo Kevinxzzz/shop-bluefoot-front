@@ -86,10 +86,10 @@ export default function Footer() {
           reservados.
         </p>
         <div className={styles.bottomLinks}>
-          <Link href="/" className={styles.bottomLink}>
+          <Link href="/termos" className={styles.bottomLink}>
             Termos de Uso
           </Link>
-          <Link href="/" className={styles.bottomLink}>
+          <Link href="/privacidade" className={styles.bottomLink}>
             Privacidade
           </Link>
         </div>
