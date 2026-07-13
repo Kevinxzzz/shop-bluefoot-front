@@ -1,6 +1,6 @@
 'use client';
 
-import { AlertTriangle } from 'lucide-react';
+import { AlertTriangle, Sparkles } from 'lucide-react';
 import styles from './ModalConfirm.module.scss';
 
 import { ReactNode } from 'react';
@@ -13,7 +13,9 @@ interface ModalConfirmProps {
   cancelText?: string;
   onConfirm: () => void;
   onCancel: () => void;
-  variant?: 'danger' | 'default';
+  variant?: 'danger' | 'default' | 'promo';
+  layout?: 'default' | 'stacked';
+  icon?: ReactNode;
   isLoading?: boolean;
   loadingText?: string;
 }
@@ -27,6 +29,8 @@ export default function ModalConfirm({
   onConfirm,
   onCancel,
   variant = 'default',
+  layout = 'default',
+  icon,
   isLoading = false,
   loadingText = 'Carregando...',
 }: ModalConfirmProps) {
@@ -35,15 +39,20 @@ export default function ModalConfirm({
   return (
     <>
       <div className={styles.overlay} onClick={onCancel} aria-hidden="true" />
-      <div className={styles.modal} role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div className={`${styles.modal} ${styles[variant]}`} role="dialog" aria-modal="true" aria-labelledby="modal-title">
         {variant === 'danger' && (
           <div className={styles.iconWrapper}>
             <AlertTriangle size={24} />
           </div>
         )}
+        {variant === 'promo' && (
+          <div className={`${styles.iconWrapper} ${styles.promo}`}>
+            {icon || <Sparkles size={24} />}
+          </div>
+        )}
         <h3 id="modal-title" className={styles.title}>{title}</h3>
-        <p className={styles.message}>{message}</p>
-        <div className={styles.actions}>
+        <div className={styles.message}>{message}</div>
+        <div className={`${styles.actions} ${styles[layout]} ${layout === 'stacked' ? styles.stacked : ''}`}>
           <button className={styles.cancelBtn} onClick={onCancel} disabled={isLoading}>
             {cancelText}
           </button>
@@ -59,3 +68,4 @@ export default function ModalConfirm({
     </>
   );
 }
+
