@@ -156,9 +156,7 @@ export default function Header() {
                   priority
                 />
               </div>
-              <span className={styles.logoText}>
-                <strong>BLUE</strong>FOOT
-              </span>
+
             </Link>
           </div>
 
