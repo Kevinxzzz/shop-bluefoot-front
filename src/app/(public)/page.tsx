@@ -10,6 +10,7 @@ import {
   Loader2,
   Check,
   Coins,
+  ChevronDown,
 } from "lucide-react";
 import { useAuth } from "@/hooks/auth/useAuth";
 import { SellAccountCTA } from "@/components/SellAccountCTA";
@@ -183,35 +184,22 @@ function HomeContent() {
             </div>
 
             {hasNextPage && (
-              <div
-                className={styles.loadMoreContainer}
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  marginTop: "2rem",
-                }}
-              >
+              <div className={styles.loadMoreContainer}>
                 <button
                   onClick={() => fetchNextPage()}
                   disabled={isFetchingNextPage}
                   className={styles.ctaBtn}
-                  style={{
-                    cursor: isFetchingNextPage ? "not-allowed" : "pointer",
-                  }}
                 >
                   {isFetchingNextPage ? (
                     <>
-                      <Loader2
-                        size={16}
-                        style={{
-                          animation: "spin 1s linear infinite",
-                          marginRight: "8px",
-                        }}
-                      />
-                      Carregando...
+                      <Loader2 size={18} className={styles.spinner} />
+                      <span>Carregando...</span>
                     </>
                   ) : (
-                    "Ver mais produtos"
+                    <>
+                      <span>Ver mais produtos</span>
+                      <ChevronDown size={18} className={styles.btnIcon} />
+                    </>
                   )}
                 </button>
               </div>
@@ -237,7 +225,7 @@ function HomeContent() {
           setFilterOpen(false);
         }}
       />
-      
+
       <ModalConfirm
         isOpen={isSellModalOpen}
         title="Quer vender sua conta conosco?"
@@ -245,11 +233,11 @@ function HomeContent() {
         layout="stacked"
         icon={<Coins size={24} />}
         message={
-          <div style={{ 
-            display: "flex", 
-            flexDirection: "column", 
-            gap: "12px", 
-            marginTop: "16px", 
+          <div style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "12px",
+            marginTop: "16px",
             textAlign: "left",
             background: "var(--color-bg-secondary)",
             padding: "16px",
