@@ -197,7 +197,7 @@ function HomeContent() {
                     </>
                   ) : (
                     <>
-                      <span>Ver mais produtos</span>
+                      <span>Ver mais</span>
                       <ChevronDown size={18} className={styles.btnIcon} />
                     </>
                   )}
