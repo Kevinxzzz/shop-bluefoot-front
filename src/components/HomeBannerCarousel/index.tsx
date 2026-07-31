@@ -18,13 +18,13 @@ interface BannerSlide {
 const SLIDES: BannerSlide[] = [
   { src: "/banner-BlueFoot.png", alt: "Bluefoot" },
   { src: "/banner1-BlueFoot.png", alt: "Compre sua conta" },
-  { src: "/banner2-Bluefoot.png", alt: "Nossos influenciadores" },
+  { src: "/banner2-BlueFoot.png", alt: "Nossos influenciadores" },
 ];
 
 const SLIDESMobile: BannerSlide[] = [
   { src: "/banner-BlueFoot-Mobile.png", alt: "BlueFoot" },
   { src: "/banner1-BlueFoot-Mobile.png", alt: "Compre sua conta" },
-  { src: "/banner2-Bluefoot-Mobile.png", alt: "Nossos influenciadores" },
+  { src: "/banner2-BlueFoot-Mobile.png", alt: "Nossos influenciadores" },
 ];
 
 const AUTOPLAY_INTERVAL = 5_000;
