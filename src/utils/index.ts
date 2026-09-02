@@ -3,7 +3,7 @@
 // ═══════════════════════════════════════════════════════════════
 
 export function formatPrice(value: number): string {
-  const valueReais= value/100
+  const valueReais = value / 100
   return valueReais.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
 
@@ -73,8 +73,11 @@ export function parseCurrencyToCents(value: string): number {
 export function getAvatarUrl(path: string | null | undefined, seedName?: string): string | null {
   if (!path) return null;
   if (path.startsWith('http') || path.startsWith('blob:') || path.startsWith('data:')) return path;
-  
-  // Assumes that if it's not a full URL, it's an S3 object key (e.g. enterprise/:enterpriseId/users/:userId/avatar/...)
-  return `https://ecomerce-martins-bucket.s3.sa-east-1.amazonaws.com/${path}`;
+
+  // If not a full URL, treat as a storage key and resolve through CDN
+  const cdnUrl = process.env.NEXT_PUBLIC_MEDIA_CDN_URL!;
+  const cleanCdn = cdnUrl.replace(/\/+$/, '');
+  const cleanPath = path.replace(/^\/+/, '');
+  return `${cleanCdn}/${cleanPath}`;
 }
 
