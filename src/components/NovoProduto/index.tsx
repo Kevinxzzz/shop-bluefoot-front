@@ -7,6 +7,7 @@ import MultiSelect from '@/components/MultiSelect';
 import type { CategoryResponseDTO } from '@/types/categoryType';
 import { useCategories } from '@/hooks/categories/useCategories';
 import { productService } from '@/services/productService';
+import { useCreateProduct } from '@/hooks/products/useCreateProduct';
 import { uploadService } from '@/services/uploadService';
 import { useToast } from '@/contexts/ToastContext';
 import { InputField } from '@/components/InputField';
@@ -38,6 +39,8 @@ export default function NovoProdutoContainer() {
   // Fetch das categorias usando o hook padrão (KISS)
   const { data: categoriesResponse, isLoading: loadingCategories, isError } = useCategories({ limit: 100 });
   const categories = categoriesResponse?.data || [];
+
+  const createProductMutation = useCreateProduct();
 
   // Exibe toast caso ocorra erro no fetch via react-query
   useEffect(() => {
@@ -115,7 +118,7 @@ export default function NovoProdutoContainer() {
         media: uploadedMedia.length > 0 ? uploadedMedia : undefined,
       };
 
-      await productService.createProduct(productPayload);
+      await createProductMutation.mutateAsync(productPayload);
 
       addToast({
         type: 'success',
