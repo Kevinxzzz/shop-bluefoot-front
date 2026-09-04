@@ -70,8 +70,8 @@ export function MediaUpload({ files, previews, onAddFiles, onRemove }: MediaUplo
           addToast({ type: 'alert', message: `Máximo de 3 imagens atingido. Ignorando ${file.name}.` });
           continue;
         }
-        if (file.size > 1 * 1024 * 1024) {
-          addToast({ type: 'alert', message: `Imagem excedeu 1MB: ${file.name}` });
+        if (file.size > 3 * 1024 * 1024) {
+          addToast({ type: 'alert', message: `Imagem excedeu 3MB: ${file.name}` });
           continue;
         }
         newImageCount++;
@@ -120,7 +120,7 @@ export function MediaUpload({ files, previews, onAddFiles, onRemove }: MediaUplo
       <label className={styles.uploadArea} htmlFor="files">
         <Upload size={24} className={styles.uploadIcon} />
         <div className={styles.uploadText}>Clique para adicionar mídias</div>
-        <div className={styles.uploadHint}>JPG, PNG, WEBP (até 1MB) | Vídeos temporariamente desabilitados</div>
+        <div className={styles.uploadHint}>JPG, PNG, WEBP (até 3MB) | Vídeos temporariamente desabilitados</div>
       </label>
       <input
         id="files"
