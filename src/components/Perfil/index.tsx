@@ -70,8 +70,8 @@ export default function PerfilContainer() {
       return;
     }
 
-    if (file.size > 5 * 1024 * 1024) {
-      setErrorMessage('A imagem deve possuir no máximo 5MB.');
+    if (file.size > 3 * 1024 * 1024) {
+      setErrorMessage('A imagem deve possuir no máximo 3MB.');
       return;
     }
 
